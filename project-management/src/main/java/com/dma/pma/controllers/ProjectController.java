@@ -22,7 +22,7 @@ public class ProjectController {
 		//bind an entity project to the form using the model.addAttribute method
 		Project project = new Project();
 		model.addAttribute("project", project);
-		return "new-project";
+		return "projects/new-project";
 	}
 	
 	@PostMapping("/save")

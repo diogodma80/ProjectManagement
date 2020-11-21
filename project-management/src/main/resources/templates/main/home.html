@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<!-- Required metatag -->
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
-	crossorigin="anonymous">
-<title>Insert title here</title>
-</head>
+<!-- replace the head tag with the template from the layouts.html -->
+<head th:replace="layouts :: header"></head>
+
 <body>
 
-	
+	<!-- replace the navbar template from the layouts.html -->
+	<nav th:replace="layouts :: navbar"></nav>
+
 	<div>
 		<h4>Current Projects</h4>
 		<table>

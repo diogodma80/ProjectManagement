@@ -23,7 +23,7 @@ public class EmployeeController {
 		// bind the employee object to the model and send it over to the new-employee.html
 		model.addAttribute("employee", new Employee());
 		
-		return "new-employee";
+		return "employees/new-employee";
 		
 	}
 	
