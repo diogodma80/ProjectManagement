@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- replace the head tag with the template from the layouts.html -->
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+	<!-- replace the navbar template from the layouts.html -->
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container">
+		<h3>Employee Directory</h3>
+		<hr>
+		
+		<!-- Add new employee Button -->
+		<a th:href="@{/employees/new}" class="btn btn-primary btn-sm sb-3">
+		Add Employee
+		</a>
+		<br></br>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="employee : ${employees}">
+					<td th:text="${employee.firstName}" />
+					<td th:text="${employee.lastName}" />
+					<td th:text="${employee.email}" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

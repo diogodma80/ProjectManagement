@@ -9,10 +9,17 @@
 	<!-- replace the navbar template from the layouts.html -->
 	<nav th:replace="layouts :: navbar"></nav>
 
-	<div>
-		<h4>Current Projects</h4>
-		<table>
-			<thead>
+	<div class="container">
+		<h3>Project Directory</h3>
+		<hr>
+		
+		<!-- Add new employee Button -->
+		<a th:href="@{/projects/new}" class="btn btn-primary btn-sm sb-3">
+		New Project
+		</a>
+		<br></br>
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
 				<tr>
 					<th>Project Name</th>
 					<th>Project Stage</th>
@@ -22,25 +29,6 @@
 				<tr th:each="project : ${projects}">
 					<td th:text="${project.name}" />
 					<td th:text="${project.stage}"/>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
-	<div>
-		<h4>Current Employees</h4>
-		<table>
-			<thead>
-				<tr>
-					<th>Employee Name</th>
-					<th>Employee Stage</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="employee : ${employees}">
-					<td th:text="${employee.firstName}" />
-					<td th:text="${employee.lastName}"/>
-					<td th:text="${employee.email}"/>
 				</tr>
 			</tbody>
 		</table>
