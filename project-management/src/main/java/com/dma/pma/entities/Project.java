@@ -1,5 +1,6 @@
 package com.dma.pma.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,12 +22,10 @@ public class Project {
 	private String name;
 	private String stage; // categorize the project as NOTSTARTED, COMPLETED, INPROGRESS
 	private String description;
-	
-	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
-			fetch = FetchType.LAZY)
-	@JoinTable(name = "project_employee", 
-			   joinColumns = @JoinColumn(name = "project_id"),
-			   inverseJoinColumns=@JoinColumn(name = "employee_id"))
+
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.PERSIST }, fetch = FetchType.LAZY)
+	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
 	private List<Employee> employees;
 
 	public Project() {
@@ -79,4 +78,13 @@ public class Project {
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
 	}
+
+	// convenience method:
+	public void addEmployee(Employee emp) {
+		if (employees == null) {
+			employees = new ArrayList<>();
+		}
+		employees.add(emp);
+	}
+
 }
