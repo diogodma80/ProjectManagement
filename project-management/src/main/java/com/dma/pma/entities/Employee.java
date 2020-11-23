@@ -15,8 +15,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Employee {
 
+	// IDENTITY allows JPA to auto increment sequentially based on the preloaded data
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long employeeId;
 
 	private String firstName;
