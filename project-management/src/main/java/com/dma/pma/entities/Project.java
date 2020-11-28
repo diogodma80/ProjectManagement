@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,12 +13,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.SequenceGenerators;
 
 @Entity
 public class Project {
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// SEQUENCE makes the database assign primary keys for the entity using a database sequence.
 	@Id
+	@Column(name = "project_id")
+	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
 	private long projectId;
 	private String name;
 	private String stage; // categorize the project as NOTSTARTED, COMPLETED, INPROGRESS

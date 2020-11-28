@@ -3,6 +3,7 @@ package com.dma.pma.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,15 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Employee {
 
-	// IDENTITY allows JPA to auto increment sequentially based on the preloaded data
+	// IDENTITY allows JPA to auto increment sequentially based on the preloaded data (when using sample data from data.sql)
+	// SEQUENCE makes the database assign primary keys for the entity using a database sequence.
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
 	private long employeeId;
-
+	
 	private String firstName;
 
 	private String lastName;
