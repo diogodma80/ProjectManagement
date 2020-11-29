@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dma.pma.dao.EmployeeRepository;
 import com.dma.pma.entities.Employee;
+import com.dma.pma.services.EmployeeService;
 
 @Controller
 @RequestMapping("/employees")
 public class EmployeeController {
 	
 	@Autowired
-	EmployeeRepository employeeRepository;
+	EmployeeService employeeService;
 	
 	@GetMapping("/new")
 	public String displayEmployeeForm(Model model) {
@@ -33,7 +33,7 @@ public class EmployeeController {
 	public String createEmployee(Employee employee, Model model) {
 		
 		// save to the database using the crud repository
-		employeeRepository.save(employee);
+		employeeService.save(employee);
 		
 		return "redirect:/employees/new";
 		
@@ -41,7 +41,7 @@ public class EmployeeController {
 	
 	@GetMapping
 	public String displayEmployees(Model model) {
-		List<Employee> employees = employeeRepository.findAll();
+		List<Employee> employees = employeeService.findAll();
 		
 		model.addAttribute("employees", employees);
 		

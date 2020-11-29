@@ -8,22 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.dma.pma.dao.EmployeeRepository;
-import com.dma.pma.dao.ProjectRepository;
 import com.dma.pma.entities.Employee;
 import com.dma.pma.entities.Project;
+import com.dma.pma.services.EmployeeService;
+import com.dma.pma.services.ProjectService;
 
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
 	
 	@Autowired
-	ProjectRepository projectRepository;
+	ProjectService projectService;
 	
 	@Autowired
-	EmployeeRepository employeeRepository;
+	EmployeeService employeeService;
 
 	@GetMapping("/new")
 	public String displayProjectForm(Model model) {
@@ -31,7 +30,7 @@ public class ProjectController {
 		Project project = new Project();
 		
 		// get the list of employees and send it over to the new-project page
-		List<Employee> employees = employeeRepository.findAll();
+		List<Employee> employees = employeeService.findAll();
 		
 		model.addAttribute("project", project);
 		model.addAttribute("employees", employees);
@@ -41,7 +40,7 @@ public class ProjectController {
 	@PostMapping("/save")
 	public String createProject(Project project, Model model) { 
 		// this method should handle saving to the database
-		projectRepository.save(project);
+		projectService.save(project);
 		
 		// use a redirect to prevent duplicate submissions
 		return "redirect:/projects/new"; 
@@ -49,7 +48,7 @@ public class ProjectController {
 	
 	@GetMapping
 	public String displayProjects(Model model) {
-		List<Project> projects = projectRepository.findAll();
+		List<Project> projects = projectService.findAll();
 		
 		model.addAttribute("projects", projects);
 		
