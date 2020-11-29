@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dma.pma.dao.ProjectRepository;
 import com.dma.pma.dto.ChartData;
 import com.dma.pma.entities.Project;
 
@@ -12,7 +13,7 @@ import com.dma.pma.entities.Project;
 public class ProjectService {
 
 	@Autowired
-	ProjectService projectRepository;
+	ProjectRepository projectRepository;
 
 	public List<Project> findAll() {
 		return projectRepository.findAll();
