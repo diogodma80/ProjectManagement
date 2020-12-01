@@ -35,7 +35,7 @@ public class EmployeeController {
 		// save to the database using the crud repository
 		employeeService.save(employee);
 		
-		return "redirect:/employees/new";
+		return "redirect:/employees";
 		
 	}
 	

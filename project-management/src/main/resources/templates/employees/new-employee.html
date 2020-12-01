@@ -10,11 +10,18 @@
 	<nav th:replace="layouts :: navbar"></nav>
 	
 	<div class="container">
-		<form method="post" th:object="${employee}" action="/employees/save">
+	<!-- setting csrf directly with Thymeleaf in the th:action parameter by 
+		 enclosing the endpoint in "@{endpoint}" -->
+		<form method="post" th:object="${employee}" th:action="@{/employees/save}">
 			<input type="text" th:field="${employee.firstName}" placeholder="First Name">
 			<input type="text" th:field="${employee.lastName}" placeholder="Last Name">
 			<input type="text" th:field="${employee.email}" placeholder="Email">
 			
+			<!-- hidden field ensures every request will have  a csrf token -->
+			<!-- 
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+			 -->
+				
 			<button type="submit">Create Employee</button>
 		</form>
 	</div>
