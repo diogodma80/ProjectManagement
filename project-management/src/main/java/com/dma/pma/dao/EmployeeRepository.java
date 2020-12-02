@@ -10,8 +10,8 @@ import com.dma.pma.entities.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
-	@Override
-	List<Employee> findAll();
+//	@Override
+//	List<Employee> findAll();
 	
 	// returns a table with first name, last name and project count for each employee
 	@Query(nativeQuery = true, value = "SELECT e.first_name AS firstName, e.last_name AS lastName, COUNT(pe.employee_id) AS projectCount "

@@ -1,17 +1,19 @@
 package com.dma.pma.security;
 
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -50,7 +52,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// hasAuthority prepends "ROLE_" to the role in the database
 		// hasRole is used when the role in the database is in the format 'ROLE_ADMIN'
 		// hasAuthority is used when the role is in the format 'ADMIN'
-		http.authorizeRequests()
+		http.csrf()
+		.requireCsrfProtectionMatcher(new RequestMatcher() {
+			// this turns off the csrf for specific api requests
+	        private Pattern allowedMethods = Pattern.compile("^(GET|HEAD|TRACE|POST)$");
+	        private RegexRequestMatcher apiMatcher = new RegexRequestMatcher("/v[0-9]*/.*", null);
+ 
+	        @Override
+	        public boolean matches(HttpServletRequest request) {
+	            // No CSRF due to allowedMethod
+	            if(allowedMethods.matcher(request.getMethod()).matches())
+	                return false;
+ 
+	            // No CSRF due to api call
+	            if(apiMatcher.matches(request))
+	                return false;
+ 
+	            // CSRF for everything else that is not an API call or an allowedMethod
+	            return true;
+	        }
+	    })
+		.disable()
+		.authorizeRequests()
 		.antMatchers("/projects/new").hasRole("ADMIN")
 		.antMatchers("/projects/save").hasRole("ADMIN")
 		.antMatchers("/employees/new").hasRole("ADMIN")

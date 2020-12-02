@@ -15,15 +15,24 @@ public class EmployeeService {
 	@Autowired
 	EmployeeRepository employeeRepository;
 
-	public void save(Employee employee) {
-		employeeRepository.save(employee);
+	public Employee save(Employee employee) {
+		return employeeRepository.save(employee);
 	}
 
-	public List<Employee> findAll() {
+	public Iterable<Employee> findAll() {
 		return employeeRepository.findAll();
 	}
 
 	public List<EmployeeProject> employeeProjects() {
 		return employeeRepository.employeeProjects();
+	}
+
+	public Employee findById(Long id) {
+		return employeeRepository.findById(id).get();
+	}
+
+	public void deleteById(Long id) {
+		employeeRepository.deleteById(id);
+		
 	}
 }

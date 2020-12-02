@@ -30,7 +30,7 @@ public class ProjectController {
 		Project project = new Project();
 		
 		// get the list of employees and send it over to the new-project page
-		List<Employee> employees = employeeService.findAll();
+		Iterable<Employee> employees = employeeService.findAll();
 		
 		model.addAttribute("project", project);
 		model.addAttribute("employees", employees);

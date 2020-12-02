@@ -1,7 +1,5 @@
 package com.dma.pma.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +39,7 @@ public class EmployeeController {
 	
 	@GetMapping
 	public String displayEmployees(Model model) {
-		List<Employee> employees = employeeService.findAll();
+		Iterable<Employee> employees = employeeService.findAll();
 		
 		model.addAttribute("employees", employees);
 		
