@@ -31,6 +31,6 @@ public class ProjectRepositoryIntegrationTest {
 		projectRepository.save(project);
 		
 		// four projects are loaded from the data.sql, so pass the new project id should be 5
-		assertEquals(5, projectRepository.findAll().size());
+		assertEquals(5, projectRepository.findAll());
 	}
 }

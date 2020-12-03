@@ -48,7 +48,7 @@ public class ProjectController {
 	
 	@GetMapping
 	public String displayProjects(Model model) {
-		List<Project> projects = projectService.findAll();
+		Iterable<Project> projects = projectService.findAll();
 		
 		model.addAttribute("projects", projects);
 		

@@ -37,7 +37,7 @@ public class HomeController {
 		
 		// findAll is overriden in the ProjectRepository so that a list 
 		// of Projects is returned instead of Iterable
-		List<Project> projects =  projectService.findAll();
+		Iterable<Project> projects =  projectService.findAll();
 		List<EmployeeProject> employeesProjectCount = employeeService.employeeProjects();
 		
 		List<ChartData> projectData = projectService.getProjectStatus();

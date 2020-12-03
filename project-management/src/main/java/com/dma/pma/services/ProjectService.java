@@ -15,7 +15,7 @@ public class ProjectService {
 	@Autowired
 	ProjectRepository projectRepository;
 
-	public List<Project> findAll() {
+	public Iterable<Project> findAll() {
 		return projectRepository.findAll();
 	}
 
@@ -23,7 +23,17 @@ public class ProjectService {
 		return projectRepository.getProjectStatus();
 	}
 
-	public void save(Project project) {
-		projectRepository.save(project);
+	public Project save(Project project) {
+		return projectRepository.save(project);
 	}
+
+	public Project findById(Long id) {
+		return projectRepository.findById(id).get();
+	}
+
+	public void deleteById(Long id) {
+		projectRepository.deleteById(id);
+	}
+	
+	
 }
