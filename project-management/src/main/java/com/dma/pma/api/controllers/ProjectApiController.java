@@ -1,5 +1,7 @@
 package com.dma.pma.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dma.pma.entities.Employee;
 import com.dma.pma.entities.Project;
 import com.dma.pma.services.ProjectService;
 
@@ -37,18 +38,18 @@ public class ProjectApiController {
 	
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Project create(@RequestBody Project project) {
+	public Project create(@RequestBody @Valid Project project) {
 		return projectService.save(project);
 	}
 	
 	@PutMapping(consumes = "application/json")
 	@ResponseStatus(HttpStatus.OK)
-	public Project update(@RequestBody Project project) {
+	public Project update(@RequestBody @Valid Project project) {
 		return projectService.save(project);
 	}
 	
 	@PatchMapping(path = "/{id}", consumes = "application/json")
-	public Project partialUpdate(@PathVariable("id") long id, @RequestBody Project patchProject) {
+	public Project partialUpdate(@PathVariable("id") long id, @RequestBody @Valid Project patchProject) {
 		Project project = projectService.findById(id);
 		
 		if(patchProject.getName() != null) {
