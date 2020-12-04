@@ -3,6 +3,7 @@ package com.dma.pma.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dma.pma.dao.EmployeeRepository;
@@ -38,6 +39,10 @@ public class EmployeeService {
 
 	public Employee findByEmail(String value) {
 		return employeeRepository.findByEmail(value);
+	}
+
+	public Iterable<Employee> findAll(Pageable pageAndSize) {
+		return employeeRepository.findAll(pageAndSize);
 	}
 
 }

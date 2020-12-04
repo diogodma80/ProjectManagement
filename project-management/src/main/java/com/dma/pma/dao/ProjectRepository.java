@@ -1,15 +1,14 @@
 package com.dma.pma.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.dma.pma.dto.ChartData;
 import com.dma.pma.entities.Project;
 
-public interface ProjectRepository extends CrudRepository<Project, Long>{
+public interface ProjectRepository extends PagingAndSortingRepository<Project, Long>{
 
 //	@Override
 //	Iterable<Project> findAll();
