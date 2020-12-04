@@ -3,7 +3,6 @@ package com.dma.pma.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,11 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import com.dma.pma.validators.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Employee {
@@ -39,7 +40,7 @@ public class Employee {
 
 	@NotNull
 	@Email
-	@Column(unique = true, nullable = false)
+	@UniqueValue
 	private String email;
 	
 	@JsonIgnore

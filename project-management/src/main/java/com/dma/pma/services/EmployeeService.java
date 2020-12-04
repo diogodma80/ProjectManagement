@@ -35,4 +35,9 @@ public class EmployeeService {
 		employeeRepository.deleteById(id);
 		
 	}
+
+	public Employee findByEmail(String value) {
+		return employeeRepository.findByEmail(value);
+	}
+
 }

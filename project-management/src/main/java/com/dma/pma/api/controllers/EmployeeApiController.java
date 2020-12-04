@@ -1,5 +1,6 @@
 package com.dma.pma.api.controllers;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,7 @@ public class EmployeeApiController {
 	}
 	
 	@PatchMapping(path = "/{id}", consumes = "application/json")
-	public Employee partialUpdate(@PathVariable("id") long id, @RequestBody @Valid Employee patchEmployee) {
+	public Employee partialUpdate(@PathVariable("id") long id, @Valid @RequestBody Employee patchEmployee) {
 		Employee employee = employeeService.findById(id);
 		
 		if(patchEmployee.getEmail() != null) {
@@ -74,6 +75,5 @@ public class EmployeeApiController {
 			//e.printStackTrace();
 		}
 		
-	}
-	
+	}	
 }
