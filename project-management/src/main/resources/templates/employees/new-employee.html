@@ -13,27 +13,32 @@
 	<!-- setting csrf directly with Thymeleaf in the th:action parameter by 
 		 enclosing the endpoint in "@{endpoint}" -->
 		<form method="post" th:object="${employee}" th:action="@{/employees/save}">
+			<div class="form-group row">
+			<!-- Used for updates. The employeeId used to bind to the employee 
+				 that was clicked on in the employee list -->
+			<input type="hidden" th:field="${employee.employeeId}"/>
 			
-			<!-- To be used for validation of the form according to the annotations in the beans -->
-			<!-- 
-			<input type="text" th:field="*{firstName}" placeholder="First Name">
-			<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</label>
-			<input type="text" th:field="*{lastName}" placeholder="Last Name">
-			<label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastNamee}">Last Name Error</label>
-			<input type="text" th:field="*{email}" placeholder="Email">
-			<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</label>
-			 -->
-		
-			<input type="text" th:field="${employee.firstName}" placeholder="First Name">
-			<input type="text" th:field="${employee.lastName}" placeholder="Last Name">
-			<input type="text" th:field="${employee.email}" placeholder="Email">
+				<!-- To be used for validation of the form according to the annotations in the beans -->
+				<!-- 
+				<input type="text" th:field="*{firstName}" placeholder="First Name">
+				<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</label>
+				<input type="text" th:field="*{lastName}" placeholder="Last Name">
+				<label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastNamee}">Last Name Error</label>
+				<input type="text" th:field="*{email}" placeholder="Email">
+				<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</label>
+				 -->
 			
-			<!-- hidden field ensures every request will have  a csrf token -->
-			<!-- 
-				<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-			 -->
+				<input type="text" th:field="${employee.firstName}" placeholder="First Name">
+				<input type="text" th:field="${employee.lastName}" placeholder="Last Name">
+				<input type="text" th:field="${employee.email}" placeholder="Email">
 				
-			<button type="submit">Create Employee</button>
+				<!-- hidden field ensures every request will have  a csrf token -->
+				<!-- 
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+				 -->
+				
+				<button type="submit">Create Employee</button>
+			</div>
 		</form>
 	</div>
 

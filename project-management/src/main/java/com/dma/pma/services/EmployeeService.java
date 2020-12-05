@@ -45,4 +45,12 @@ public class EmployeeService {
 		return employeeRepository.findAll(pageAndSize);
 	}
 
+	public Employee findByEmployeeId(long id) {
+		return employeeRepository.findByEmployeeId(id);
+	}
+
+	public void delete(Employee employee) {
+		employeeRepository.delete(employee);
+	}
+
 }
