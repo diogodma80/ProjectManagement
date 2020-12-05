@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,8 +28,16 @@ public class Project {
 	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
 	private long projectId;
+	
+	@NotBlank(message = " * Must provide a project name")
+	@Size(min = 4, max = 50)
 	private String name;
+	
+	@NotBlank(message = " * Must provide a project status")
 	private String stage; // categorize the project as NOTSTARTED, COMPLETED, INPROGRESS
+	
+	@NotBlank(message = " * Must provide a project description")
+	@Size(min = 4, max = 50)
 	private String description;
 
 	@JsonIgnore

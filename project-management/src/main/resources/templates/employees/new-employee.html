@@ -9,15 +9,17 @@
 	<!-- replace the navbar template from the layouts.html -->
 	<nav th:replace="layouts :: navbar"></nav>
 	
+	<br> 
+	
 	<div class="container">
 	<!-- setting csrf directly with Thymeleaf in the th:action parameter by 
 		 enclosing the endpoint in "@{endpoint}" -->
 		<form method="post" th:object="${employee}" th:action="@{/employees/save}">
 			<div class="form-group row">
-			<!-- Used for updates. The employeeId used to bind to the employee 
-				 that was clicked on in the employee list -->
-			<input type="hidden" th:field="${employee.employeeId}"/>
-			
+				<!-- Used for updates. The employeeId used to bind to the employee 
+				 	that was clicked on in the employee list -->
+				<input type="hidden" th:field="${employee.employeeId}"/>
+			</div>
 				<!-- To be used for validation of the form according to the annotations in the beans -->
 				<!-- 
 				<input type="text" th:field="*{firstName}" placeholder="First Name">
@@ -27,18 +29,25 @@
 				<input type="text" th:field="*{email}" placeholder="Email">
 				<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</label>
 				 -->
-			
-				<input type="text" th:field="${employee.firstName}" placeholder="First Name">
+			<div class="form-group row">
+				<input type="text" th:field="${employee.firstName}" placeholder="First Name"> 
+				<span style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="${employee.firstName}"></span>
+			</div>
+			<div class="form-group row">
 				<input type="text" th:field="${employee.lastName}" placeholder="Last Name">
+				<span style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="${employee.lastName}"></span>
+			</div>
+			<div class="form-group row">
 				<input type="text" th:field="${employee.email}" placeholder="Email">
-				
+				<span style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="${employee.email}"></span>
+			</div>
 				<!-- hidden field ensures every request will have  a csrf token -->
 				<!-- 
 					<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 				 -->
-				
-				<button type="submit">Create Employee</button>
-			</div>
+			<div class="form-group row">	
+				<button type="submit" class="btn btn-info col-2">Create Employee</button>
+			</div>	
 		</form>
 	</div>
 

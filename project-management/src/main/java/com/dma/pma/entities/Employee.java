@@ -13,7 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.dma.pma.validators.UniqueValue;
@@ -30,15 +30,15 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
 	private long employeeId;
 	
-	@NotNull
+	@NotBlank(message = " * Must provide a first name")
 	@Size(min = 2, max = 50)
 	private String firstName;
 
-	@NotNull
+	@NotBlank(message = " * Must provide a last name")
 	@Size(min = 1, max = 50)
 	private String lastName;
 
-	@NotNull
+	@NotBlank(message = " * Must provide a valid email address")
 	@Email
 	@UniqueValue
 	private String email;
