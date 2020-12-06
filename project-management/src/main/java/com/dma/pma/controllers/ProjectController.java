@@ -1,5 +1,7 @@
 package com.dma.pma.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dma.pma.dto.TimeChartData;
 import com.dma.pma.entities.Employee;
 import com.dma.pma.entities.Project;
 import com.dma.pma.services.EmployeeService;
 import com.dma.pma.services.ProjectService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/projects")
@@ -59,6 +64,22 @@ public class ProjectController {
 		model.addAttribute("projects", projects);
 		
 		return "projects/list-projects";
+	}
+	
+	@GetMapping("/timelines")
+	public String displayProjectTimelines(Model model) throws JsonProcessingException {
+		
+		List<TimeChartData> timelineData =  projectService.getTimeData();
+		
+		// wrap the project data (name, start and end data) into the objectMaper object
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonTimeLineData = objectMapper.writeValueAsString(timelineData);
+		
+		System.out.println("------- project timelines --------");
+		System.out.println(jsonTimeLineData);
+		
+		model.addAttribute("projectTimeList", jsonTimeLineData);
+		return "projects/project-timelines";
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dma.pma.dao.ProjectRepository;
 import com.dma.pma.dto.ChartData;
+import com.dma.pma.dto.TimeChartData;
 import com.dma.pma.entities.Project;
 
 @Service
@@ -35,5 +36,7 @@ public class ProjectService {
 		projectRepository.deleteById(id);
 	}
 	
-	
+	public List<TimeChartData> getTimeData() {
+		return projectRepository.getTimeData();
+	}
 }
