@@ -86,8 +86,10 @@ public class ProjectController {
 	@GetMapping("/update")
 	public String displayProjectUpdateForm(@RequestParam("id") long id, Model model) {
 		Project project = projectService.findById(id);
+		Iterable<Employee> employees = employeeService.findAll();
 		
 		model.addAttribute("project", project);
+		model.addAttribute("employees", employees);
 		
 		return "projects/new-project";
 	}
