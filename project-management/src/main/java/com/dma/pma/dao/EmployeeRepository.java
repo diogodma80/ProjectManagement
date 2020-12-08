@@ -25,4 +25,8 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 	public Employee findByEmail(String value);
 
 	public Employee findByEmployeeId(long id);
+	
+	@Query(nativeQuery = true, value = "SELECT e.first_name AS firstName, e.employee_id as employeeId "
+			+ "FROM employee e left join project_employee pe ON pe.employee_id = e.employee_id")
+	public List<EmployeeProject> projectEmployees();
 }

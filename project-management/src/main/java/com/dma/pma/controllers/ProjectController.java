@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dma.pma.dto.TimeChartData;
 import com.dma.pma.entities.Employee;
@@ -80,6 +81,24 @@ public class ProjectController {
 		
 		model.addAttribute("projectTimeList", jsonTimeLineData);
 		return "projects/project-timelines";
+	}
+	
+	@GetMapping("/update")
+	public String displayProjectUpdateForm(@RequestParam("id") long id, Model model) {
+		Project project = projectService.findById(id);
+		
+		model.addAttribute("project", project);
+		
+		return "projects/new-project";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteProject(@RequestParam("id") long id, Model model) {
+		Project project = projectService.findById(id);
+		
+		projectService.delete(project);
+		
+		return "redirect:/projects";
 	}
 
 }

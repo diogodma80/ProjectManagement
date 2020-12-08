@@ -39,4 +39,8 @@ public class ProjectService {
 	public List<TimeChartData> getTimeData() {
 		return projectRepository.getTimeData();
 	}
+
+	public void delete(Project project) {
+		projectRepository.delete(project);
+	}
 }

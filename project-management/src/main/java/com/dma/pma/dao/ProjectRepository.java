@@ -8,6 +8,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.dma.pma.dto.ChartData;
 import com.dma.pma.dto.TimeChartData;
+import com.dma.pma.entities.Employee;
 import com.dma.pma.entities.Project;
 
 //Rest controller will serve from the 'apiemployees' endpoint while 'employees' will continue to serve the page
